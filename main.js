@@ -19,15 +19,7 @@ function convertFile() {
 	    	_prepareSVG(page);
 	    	_runPlottable(page);
 	    	_extractSVG(page);
-	      page.evaluate(function() {
-	      	var node = document.getElementById('svg');
-	      	node.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-					var svgData = new XMLSerializer().serializeToString(node);
-	      	return svgData;
-	      }, function (svgData) {
-	      	createSVGFile(svgData);
-	        ph.exit();
-	      });
+        ph.exit();
     	});
 	  });
 	});
@@ -58,7 +50,14 @@ function _runPlottable(page) {
 }
 
 function _extractSVG(page) {
-
+	page.evaluate(function() {
+		var node = document.getElementById('svg');
+		node.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+		var svgData = new XMLSerializer().serializeToString(node);
+		return svgData;
+	}, function (svgData) {
+		createSVGFile(svgData);
+	});
 }
 
 function createSVGFile(svgNodeData) {
