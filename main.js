@@ -6,7 +6,8 @@ function convertFile() {
 	  ph.createPage(function (page) {
 	    page.open("http://localhost:8000", function (status) {
 	      page.evaluate(function () {
-	      	var node = document.getElementById('chart')
+	      	var node = document.getElementById('chart');
+	      	node.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 					var nodeInformation = new XMLSerializer().serializeToString(node);
 	      	return nodeInformation;
 	      }, function (result) {
@@ -41,7 +42,8 @@ function loadScript(scriptName) {
 
 
 function start() {
-	loadScript('script.js')
+	convertFile();
+	// loadScript('script.js')
 }
 
 
