@@ -1,5 +1,7 @@
+# Command line charts with PlottableJS
+
 ## Overview 
-Tool to be used for generating SVG and PNG plots using [PlottableJS](https://github.com/palantir/plottable). Can be invoked from command line 
+Tool to be used for generating SVG and PNG plots using [PlottableJS](https://github.com/palantir/plottable). 
 
 ## Installation
 - Install NodeJS
@@ -18,8 +20,8 @@ node plottable-node.js -h 500 -w 500 -o plot.svg example.js
 ```
 
 ## PNG conversion
-We do not support PNG conversion natively, but provide a neat tool for executing the conversion (MAC only)
-- One file conversion `bash svgToPng.sh file.svg`
+We do not officially support PNG conversion, but we provide a neat tool for executing the conversion (MAC only)
+- One file conversion `bash svgToPng.sh file.svg` -> `file.svg.png`
 
 ## Help
 ```help
