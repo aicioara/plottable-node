@@ -1,6 +1,10 @@
 {
   "name": "plottable-node",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aicioara/plottable-node.git"
+  },
   "authors": [
     "Andrei Cioara <acioara@palantir.com>"
   ],

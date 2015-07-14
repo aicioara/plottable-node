@@ -1,8 +1,8 @@
 {
   "name": "plottable-node",
   "version": "0.1.0",
-  "description": "",
-  "main": "main.js",
+  "description": "Tool to be used for generating SVG and PNG plots using PlottableJS",
+  "main": "plottable-node.js",
   "dependencies": {
     "minimist": "^1.1.1",
     "phantom": "^0.7.2"
@@ -11,6 +11,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Andrei Cioara <acioara@palantir.com>",
   "license": "MIT"
 }
