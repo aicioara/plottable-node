@@ -18,6 +18,10 @@ Configured
 ```
 node plottable-node.js -h 500 -w 500 -o plot.svg example.js
 ```
+Data split
+```
+node plottable-node.js -h 500 -w 500 -o plot.svg -d data.js config.js
+```
 
 ## PNG conversion
 We do not officially support PNG conversion, but we provide a neat tool for executing the conversion (MAC only)
