@@ -14,6 +14,7 @@ function convertFile() {
 	    	if (status !== "success") {
 	    		throw new Error("Could not find file " + _templateFile);
 	    	}
+	    	page.evaluateJavaScript("console.log('hello world')")
 	    	_dataFile && page.injectJs(_dataFile, function(success) {
 	    		if (!success) {
 	    			throw new Error("Could not find file " + data_file);
