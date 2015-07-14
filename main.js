@@ -1,8 +1,8 @@
 var phantom = require('phantom');
 var fs = require('fs');
 
-var _testFile = 'test.js';
 var _dataFile = 'testData.js';
+var _testFile = 'test.js';
 var _templateFile = 'template.html';
 var _outputFile = 'output.svg';
 var _plottableCSS = 'bower_components/plottable/plottable.css';
@@ -14,12 +14,12 @@ function convertFile() {
 	    	if (status !== "success") {
 	    		throw new Error("Could not find file " + _templateFile);
 	    	}
-	    	page.injectJs(_dataFile, function(success) {
+	    	_dataFile && page.injectJs(_dataFile, function(success) {
 	    		if (!success) {
 	    			throw new Error("Could not find file " + data_file);
 	    		}
 	    	});
-	    	page.injectJs(_testFile, function(success) {
+	    	_testFile && page.injectJs(_testFile, function(success) {
 	    		if (!success) {
 	    			throw new Error("Could not find file " + _testFile);
 	    		}
