@@ -8,9 +8,9 @@ var _configFile;
 var _outputFile;
 var _svgHeight;
 var _svgWidth;
-var _templateFile = 'template.html';
-var _readmeFile = 'README.md';
-var _plottableCSS = 'bower_components/plottable/plottable.css';
+var _templateFile = __dirname + '/template.html';
+var _readmeFile = __dirname + 'README.md';
+var _plottableCSS = __dirname + '/bower_components/plottable/plottable.css';
 
 function createPlotAndExtractSVG() {
   phantom.create(function(ph) {
@@ -132,7 +132,7 @@ function processArguments() {
 function showHelp() {
   var cmd = path.basename(process.argv[1]);
   var help = fs
-    .readFileSync(__dirname + '/' + _readmeFile , 'utf-8')
+    .readFileSync(_readmeFile, 'utf-8')
     .match(/```help([^`]*)```/)[1]
     .replace(/\$0/g, cmd)
     .trim()
