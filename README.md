@@ -1,14 +1,10 @@
 # plottable-node
 
-## Installation & Prerequisites 
+## Installation
 - Install NodeJS
-- `npm install -g bower`
-- `npm install -g phantomjs`
-
-```
-npm install
-bower install
-```
+- Install global dependencies `npm install bower phantomjs -g`
+- Install node modules `npm install`
+- Install library dependencies `bower install`
 
 ## Usage
 Simple
@@ -20,6 +16,12 @@ More configuration
 node plottable-node.js -h 500 -w 500 -o plot.svg example.js
 ```
 
+## Overview 
+Tool to be used for generating SVG and PNG plots using [PlottableJS](https://github.com/palantir/plottable). Can be invoked from command line 
+
+## PNG conversion
+We do not support PNG conversion natively, but provide a neat tool for executing the conversion (MAC only)
+- One file conversion `bash svgToPng.sh file.svg`
 
 ## Help
 ```help
@@ -35,6 +37,8 @@ Options:
     --help             print usage information
 ```
 
+## Develop
+For feature requests please open an issue. Pull requests welcome.
 
 ## License
 MIT
