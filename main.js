@@ -16,13 +16,13 @@ function convertFile() {
 	    	if (status !== "success") {
 	    		throw new Error("Could not find file " + _templateFile);
 	    	}
-	    	page.evaluate(function() {
+	    	page.evaluate(function(height, width) {
     			var svg =	document.createElementNS("http://www.w3.org/2000/svg", "svg");
 					svg.id = "svg";
-					svg.setAttribute("height", 500);
-					svg.setAttribute("width", 500);
+					svg.setAttribute("height", height);
+					svg.setAttribute("width", width);
 					document.body.appendChild(svg);
-	    	});
+	    	}, 500, 500);
 	    	_dataFile && page.injectJs(_dataFile, function(success) {
 	    		if (!success) {
 	    			throw new Error("Could not find file " + data_file);
