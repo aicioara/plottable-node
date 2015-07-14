@@ -34,8 +34,8 @@ function createSVGFile(svgNodeData) {
 	})
 }
 
-function loadFile(scriptName, callback) {
-	fs.readFile(scriptName, 'utf8', function (err, data) {
+function loadFile(file, callback) {
+	fs.readFile(file, 'utf8', function (err, data) {
 	  if (err) {
 	    return console.log(err);
 	  }
