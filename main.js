@@ -1,6 +1,7 @@
 var fs = require('fs');
 var minimist = require('minimist');
 var phantom = require('phantom');
+var path = require('path');
 
 var _dataFile;
 var _configFile;
@@ -8,6 +9,7 @@ var _outputFile;
 var _svgHeight;
 var _svgWidth;
 var _templateFile = 'template.html';
+var _readmeFile = 'README.md';
 var _plottableCSS = 'bower_components/plottable/plottable.css';
 
 function createPlotAndExtractSVG() {
@@ -97,32 +99,45 @@ function generateCSS(callback) {
 }
 
 function processArguments() {
-  var argv = minimist(process.argv.slice(2), {
+  var args = minimist(process.argv.slice(2), {
+    boolean: ["help", "version"],
     alias: {
       d: "data",
-      c: "config",
       o: "output",
       h: "height",
-      w: "width"
+      w: "width",
     }
   });
 
-  _dataFile = argv.data || null;
-  _configFile = argv.config || null;
-  _outputFile = argv.output || "output.svg";
-  _svgHeight = argv.height || 500;
-  _svgWidth = argv.width || 500;
+  if (args.help) {
+    showHelp();
+  }
+
+  if (args.version) {
+    console.log("v" + require('./package.json').version);
+    process.exit();
+  }
+
+  _dataFile = args.data || null;
+  _configFile = args._[0] || null;
+  _outputFile = args.output || "output.svg";
+  _svgHeight = args.height || 500;
+  _svgWidth = args.width || 500;
 
   if (_configFile == null) {
     showHelp();
   }
-
-  console.dir(argv);
 }
 
 function showHelp() {
-  console.log("No configuration file given")
-  process.exit();
+  var cmd = path.basename(process.argv[1]);
+  var help = fs
+    .readFileSync(__dirname + '/' + _readmeFile , 'utf-8')
+    .match(/```help([^`]*)```/)[1]
+    .replace(/\$0/g, cmd)
+    .trim()
+  console.log(help);
+  process.exit(1);
 }
 
 function start() {
