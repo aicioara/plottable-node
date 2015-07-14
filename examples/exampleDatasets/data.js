@@ -1,34 +1,20 @@
-data = [
-  {x: 0, y: 0, type: "0"}
-];
+var _datasets = 10;
+var _categories = 20;
 
-var categories = 20; //change this number for more/less categories
-var stack = 10; //change this number for more/less stack
-var arr = [];
+var template = Array.apply(null, Array(_categories)).map(function(d, i) {
+	return {
+		x: i,
+		y: i,
+		type: 0
+	}
+});
 
-data = addCategories(categories);
-data = addStacks(stack, categories);
-
-//functions
-function addCategories(categories){
-  var arr1 = [];
-  for(i = 0; i < categories; i++){
-    var temp = JSON.parse(JSON.stringify(data[0]));
-    temp.x = i;
-    temp.y = i;
-    arr1.push(temp);
-  }
-  return arr1;
-}
-
-function addStacks(numStack, numCategories){
-  var arr2 = [];
-  for(i = 0; i < numStack; i++){
-    var temp = JSON.parse(JSON.stringify(data));
-    for(j = 0; j < numCategories; j++){
-        temp[j].type = i.toString();
-    }
-    arr2.push(temp);
-  }
-  return arr2;
-}
+var data = Array.apply(null, Array(_datasets)).map(function(d, i) {
+	return template.map(function(d) {
+	  return {
+	  	x: d.x,
+	  	y: d.y,
+	  	type: i.toString()
+	  }
+	});
+});
