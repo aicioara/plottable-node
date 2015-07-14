@@ -14,7 +14,7 @@ Simple
 ```
 node plottable-node.js example.js
 ```
-More configuration
+Configured
 ```
 node plottable-node.js -h 500 -w 500 -o plot.svg example.js
 ```
