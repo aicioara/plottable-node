@@ -9,3 +9,4 @@ bower_components/
 *.svg
 *.png
 test.js
+testData.js
