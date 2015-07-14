@@ -4,16 +4,18 @@ var fs = require('fs');
 function convertFile() {
 	phantom.create(function (ph) {
 	  ph.createPage(function (page) {
-	    page.open("http://localhost:8000", function (status) {
-	      page.evaluate(function () {
-	      	var node = document.getElementById('chart');
-	      	node.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-					var nodeInformation = new XMLSerializer().serializeToString(node);
-	      	return nodeInformation;
-	      }, function (result) {
-	      	createSVGFile(result);
-	        ph.exit();
-	      });
+	    page.open("template.html", function (status) {
+	    	page.injectJs('script.js', function() {
+		      page.evaluate(function() {
+		      	var node = document.getElementById('chart');
+		      	node.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+						var nodeInformation = new XMLSerializer().serializeToString(node);
+		      	return nodeInformation;
+		      }, function (result) {
+		      	createSVGFile(result);
+		        ph.exit();
+		      });
+	    	})
 	    });
 	  });
 	});
