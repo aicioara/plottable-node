@@ -6,6 +6,8 @@ var _testFile = 'test.js';
 var _templateFile = 'template.html';
 var _outputFile = 'output.svg';
 var _plottableCSS = 'bower_components/plottable/plottable.css';
+var _svgHeight = 100;
+var _svgWidth = 100;
 
 function convertFile() {
 	phantom.create(function(ph) {
@@ -14,7 +16,13 @@ function convertFile() {
 	    	if (status !== "success") {
 	    		throw new Error("Could not find file " + _templateFile);
 	    	}
-	    	page.evaluateJavaScript("console.log('hello world')")
+	    	page.evaluate(function() {
+    			var svg =	document.createElementNS("http://www.w3.org/2000/svg", "svg");
+					svg.id = "svg";
+					svg.setAttribute("height", 500);
+					svg.setAttribute("width", 500);
+					document.body.appendChild(svg);
+	    	});
 	    	_dataFile && page.injectJs(_dataFile, function(success) {
 	    		if (!success) {
 	    			throw new Error("Could not find file " + data_file);
