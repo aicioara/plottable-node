@@ -1,8 +1,13 @@
-# Plottable Node
+# plottable-node
 
-## Installation
+## Installation & Prerequisites 
+- Install NodeJS
+- `npm install -g bower`
+- `npm install -g phantomjs`
+
 ```
 npm install
+bower install
 ```
 
 ## Usage
