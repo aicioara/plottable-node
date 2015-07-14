@@ -37,7 +37,7 @@ Options:
     -o, --output       name of the output SVG file (defaults to output.svg)
     -h, --height       width of the SVG in pixels
     -w, --width        height of the SVG in pixels
-    -v, --version      show version info and exit
+    --version          show version info and exit
     --help             print usage information
 ```
 
