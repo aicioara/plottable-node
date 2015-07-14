@@ -1,4 +1,5 @@
-# plottable-node
+## Overview 
+Tool to be used for generating SVG and PNG plots using [PlottableJS](https://github.com/palantir/plottable). Can be invoked from command line 
 
 ## Installation
 - Install NodeJS
@@ -15,9 +16,6 @@ More configuration
 ```
 node plottable-node.js -h 500 -w 500 -o plot.svg example.js
 ```
-
-## Overview 
-Tool to be used for generating SVG and PNG plots using [PlottableJS](https://github.com/palantir/plottable). Can be invoked from command line 
 
 ## PNG conversion
 We do not support PNG conversion natively, but provide a neat tool for executing the conversion (MAC only)
