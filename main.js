@@ -6,8 +6,8 @@ var _testFile = 'test.js';
 var _templateFile = 'template.html';
 var _outputFile = 'output.svg';
 var _plottableCSS = 'bower_components/plottable/plottable.css';
-var _svgHeight = 100;
-var _svgWidth = 100;
+var _svgHeight = 500;
+var _svgWidth = 500;
 
 function convertFile() {
 	phantom.create(function(ph) {
@@ -16,23 +16,8 @@ function convertFile() {
 	    	if (status !== "success") {
 	    		throw new Error("Could not find file " + _templateFile);
 	    	}
-	    	page.evaluate(function(height, width) {
-    			var svg =	document.createElementNS("http://www.w3.org/2000/svg", "svg");
-					svg.id = "svg";
-					svg.setAttribute("height", height);
-					svg.setAttribute("width", width);
-					document.body.appendChild(svg);
-	    	}, 500, 500);
-	    	_dataFile && page.injectJs(_dataFile, function(success) {
-	    		if (!success) {
-	    			throw new Error("Could not find file " + data_file);
-	    		}
-	    	});
-	    	_testFile && page.injectJs(_testFile, function(success) {
-	    		if (!success) {
-	    			throw new Error("Could not find file " + _testFile);
-	    		}
-	    	});
+	    	_prepareSVG(page);
+	    	_runPlottable(page);
 	      page.evaluate(function() {
 	      	var node = document.getElementById('svg');
 	      	node.setAttribute("xmlns", "http://www.w3.org/2000/svg");
@@ -44,6 +29,30 @@ function convertFile() {
 	      });
     	});
 	  });
+	});
+}
+
+function _prepareSVG(page) {
+	page.evaluate(function(height, width) {
+		var svg =	document.createElementNS("http://www.w3.org/2000/svg", "svg");
+		svg.id = "svg";
+		svg.setAttribute("height", height);
+		svg.setAttribute("width", width);
+		document.body.appendChild(svg);
+	}, function() {
+	}, _svgHeight, _svgWidth);
+}
+
+function _runPlottable(page) {
+	_dataFile && page.injectJs(_dataFile, function(success) {
+		if (!success) {
+			throw new Error("Could not find file " + data_file);
+		}
+	});
+	_testFile && page.injectJs(_testFile, function(success) {
+		if (!success) {
+			throw new Error("Could not find file " + _testFile);
+		}
 	});
 }
 
