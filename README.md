@@ -11,6 +11,17 @@ bower install
 ```
 
 ## Usage
+Simple
+```
+node plottable-node.js example.js
+```
+More configuration
+```
+node plottable-node.js -h 500 -w 500 -o plot.svg example.js
+```
+
+
+## Help
 ```help
 Usage:
     $0 [options] configFile
