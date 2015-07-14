@@ -10,7 +10,7 @@ var _plottableCSS = 'bower_components/plottable/plottable.css';
 function convertFile() {
 	phantom.create(function(ph) {
 	  ph.createPage(function(page) {
-	    page.open(_templateFile, function(status, a, b, c) {
+	    page.open(_templateFile, function(status) {
 	    	if (status !== "success") {
 	    		throw new Error("Could not find file " + _templateFile);
 	    	}
@@ -24,7 +24,7 @@ function convertFile() {
 	    			throw new Error("Could not find file " + _testFile);
 	    		}
 	    	});
-	      page.evaluate(function(a, b, c) {
+	      page.evaluate(function() {
 	      	var node = document.getElementById('svg');
 	      	node.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 					var svgData = new XMLSerializer().serializeToString(node);
