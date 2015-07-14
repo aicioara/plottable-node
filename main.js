@@ -9,7 +9,7 @@ var _plottableCSS = 'bower_components/plottable/plottable.css';
 var _svgHeight = 500;
 var _svgWidth = 500;
 
-function start() {
+function createPlotAndExtractSVG() {
   phantom.create(function(ph) {
     ph.createPage(function(page) {
       page.open(_templateFile, function(status) {
@@ -93,6 +93,10 @@ function generateCSS(callback) {
     injection += '</defs>';
     callback(injection);
   });
+}
+
+function start() {
+  createPlotAndExtractSVG();
 }
 
 start();
