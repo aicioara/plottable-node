@@ -2,7 +2,15 @@
 <html>
 <head> <link rel="stylesheet" type="text/css" href="bower_components/plottable/plottable.css"> </head>
 <body>
-<svg id="svg" height="500" width="500"></svg>
+
+<script>
+	var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+	svg.id = "svg";
+	svg.setAttribute("height", 500);
+	svg.setAttribute("width", 500);
+	document.body.appendChild(svg);
+</script>
+
 <script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
 <script type="text/javascript" src="bower_components/plottable/plottable.js"></script>
 </body>
