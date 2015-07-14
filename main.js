@@ -18,6 +18,7 @@ function convertFile() {
 	    	}
 	    	_prepareSVG(page);
 	    	_runPlottable(page);
+	    	_extractSVG(page);
 	      page.evaluate(function() {
 	      	var node = document.getElementById('svg');
 	      	node.setAttribute("xmlns", "http://www.w3.org/2000/svg");
@@ -54,6 +55,10 @@ function _runPlottable(page) {
 			throw new Error("Could not find file " + _testFile);
 		}
 	});
+}
+
+function _extractSVG(page) {
+
 }
 
 function createSVGFile(svgNodeData) {
