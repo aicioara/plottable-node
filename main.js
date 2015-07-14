@@ -1,13 +1,14 @@
-var phantom = require('phantom');
 var fs = require('fs');
+var minimist = require('minimist');
+var phantom = require('phantom');
 
-var _dataFile = 'testData.js';
-var _testFile = 'test.js';
+var _dataFile;
+var _configFile;
+var _outputFile;
+var _svgHeight;
+var _svgWidth;
 var _templateFile = 'template.html';
-var _outputFile = 'output.svg';
 var _plottableCSS = 'bower_components/plottable/plottable.css';
-var _svgHeight = 500;
-var _svgWidth = 500;
 
 function createPlotAndExtractSVG() {
   phantom.create(function(ph) {
@@ -42,9 +43,9 @@ function _runPlottable(page) {
       throw new Error("Could not find file " + data_file);
     }
   });
-  _testFile && page.injectJs(_testFile, function(success) {
+  _configFile && page.injectJs(_configFile, function(success) {
     if (!success) {
-      throw new Error("Could not find file " + _testFile);
+      throw new Error("Could not find file " + _configFile);
     }
   });
 }
@@ -95,7 +96,37 @@ function generateCSS(callback) {
   });
 }
 
+function processArguments() {
+  var argv = minimist(process.argv.slice(2), {
+    alias: {
+      d: "data",
+      c: "config",
+      o: "output",
+      h: "height",
+      w: "width"
+    }
+  });
+
+  _dataFile = argv.data || null;
+  _configFile = argv.config || null;
+  _outputFile = argv.output || "output.svg";
+  _svgHeight = argv.height || 500;
+  _svgWidth = argv.width || 500;
+
+  if (_configFile == null) {
+    showHelp();
+  }
+
+  console.dir(argv);
+}
+
+function showHelp() {
+  console.log("No configuration file given")
+  process.exit();
+}
+
 function start() {
+  processArguments();
   createPlotAndExtractSVG();
 }
 

@@ -4,6 +4,7 @@
   "description": "",
   "main": "main.js",
   "dependencies": {
+    "minimist": "^1.1.1",
     "phantom": "^0.7.2"
   },
   "devDependencies": {},
